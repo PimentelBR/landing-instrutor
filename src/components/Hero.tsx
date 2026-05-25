@@ -201,18 +201,21 @@ export default function Hero() {
               className="flex flex-wrap gap-3 mb-5"
             >
               <a
-                href="#planos"
+                href="/cadastro"
                 className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold px-7 py-4 rounded-xl transition-all duration-200 glow text-[15px]"
               >
                 Começar Gratuitamente
                 <ArrowRight className="w-4 h-4" />
               </a>
-              <button className="inline-flex items-center gap-2.5 bg-white hover:bg-slate-50 text-slate-700 font-semibold px-6 py-4 rounded-xl border border-slate-200 hover:border-slate-300 transition-all duration-200 text-[15px] shadow-sm hover:shadow-md">
+              <a
+                href="/buscar"
+                className="inline-flex items-center gap-2.5 bg-white hover:bg-slate-50 text-slate-700 font-semibold px-6 py-4 rounded-xl border border-slate-200 hover:border-slate-300 transition-all duration-200 text-[15px] shadow-sm hover:shadow-md"
+              >
                 <div className="w-7 h-7 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
                   <Play className="w-3 h-3 text-white fill-white ml-0.5" />
                 </div>
                 Ver Demonstração
-              </button>
+              </a>
             </motion.div>
 
             <motion.p

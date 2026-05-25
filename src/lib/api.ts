@@ -44,9 +44,11 @@ export interface Instrutor {
 }
 
 export async function getInstrutores(params: Record<string, string> = {}): Promise<Instrutor[]> {
-  const url = new URL(`${BASE}/api/instrutores`);
-  Object.entries(params).forEach(([k, v]) => v && url.searchParams.set(k, v));
-  const res = await fetch(url.toString(), { cache: "no-store" });
+  const qs = new URLSearchParams();
+  Object.entries(params).forEach(([k, v]) => v && qs.set(k, v));
+  const query = qs.toString();
+  const url = `${BASE}/api/instrutores${query ? `?${query}` : ""}`;
+  const res = await fetch(url, { cache: "no-store" });
   if (!res.ok) throw new Error("Erro ao buscar instrutores");
   return res.json();
 }

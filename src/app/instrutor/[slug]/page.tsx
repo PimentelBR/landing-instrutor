@@ -271,6 +271,19 @@ export default function InstructorPage() {
   const params = useParams();
   const slug = typeof params.slug === "string" ? params.slug : "";
   const [inst, setInst] = useState<Instrutor | null | undefined>(undefined);
+  const [copiado, setCopiado] = useState(false);
+
+  function handleCompartilhar() {
+    const url = window.location.href;
+    if (navigator.share) {
+      navigator.share({ title: inst?.nome ?? "Instrutor", url }).catch(() => {});
+    } else {
+      navigator.clipboard.writeText(url).then(() => {
+        setCopiado(true);
+        setTimeout(() => setCopiado(false), 2000);
+      });
+    }
+  }
 
   useEffect(() => {
     if (!slug) return;
@@ -321,9 +334,12 @@ export default function InstructorPage() {
             </span>
           </Link>
 
-          <button className="flex items-center gap-1.5 text-[13.5px] font-semibold text-slate-500 hover:text-slate-700 transition-colors">
+          <button
+            onClick={handleCompartilhar}
+            className="flex items-center gap-1.5 text-[13.5px] font-semibold text-slate-500 hover:text-slate-700 transition-colors"
+          >
             <Share2 className="w-4 h-4" />
-            <span className="hidden sm:block">Compartilhar</span>
+            <span className="hidden sm:block">{copiado ? "Link copiado!" : "Compartilhar"}</span>
           </button>
         </div>
       </div>

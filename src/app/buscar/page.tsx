@@ -418,7 +418,7 @@ export default function BuscarPage() {
               Mais de 200 instrutores já usam a plataforma. Comece grátis hoje.
             </p>
             <Link
-              href="/#planos"
+              href="/cadastro"
               className="inline-flex items-center gap-2 bg-white text-blue-700 font-bold px-7 py-3.5 rounded-xl hover:bg-blue-50 transition-all text-[14px]"
             >
               Quero me cadastrar
