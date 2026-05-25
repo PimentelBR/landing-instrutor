@@ -37,14 +37,14 @@ export default function FinalCTA() {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
               <a
-                href="#"
+                href="/cadastro"
                 className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-bold px-9 py-4 xl:py-5 rounded-xl transition-all duration-200 glow text-[16px] xl:text-[17px]"
               >
                 Criar Conta Grátis
                 <ArrowRight className="w-5 h-5" />
               </a>
               <a
-                href="#planos"
+                href="/cadastro?plano=premium"
                 className="inline-flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 text-white font-bold px-9 py-4 xl:py-5 rounded-xl border border-white/10 hover:border-white/20 transition-all duration-200 text-[16px] xl:text-[17px]"
               >
                 <Zap className="w-4 h-4 text-amber-400" />

@@ -75,7 +75,7 @@ export default function Pricing() {
             <p className="text-[13px] text-slate-400 mb-7">Para sempre. Sem cartão de crédito.</p>
 
             <a
-              href="#"
+              href="/cadastro"
               className="block text-center font-bold py-3.5 xl:py-4 rounded-xl border-2 border-slate-200 text-slate-700 hover:border-blue-300 hover:text-blue-600 hover:bg-blue-50/50 transition-all duration-200 text-[15px] mb-8"
             >
               Começar Grátis
@@ -138,7 +138,7 @@ export default function Pricing() {
               )}
 
               <a
-                href="#"
+                href="/cadastro?plano=premium"
                 className="relative flex items-center justify-center gap-2 font-bold py-3.5 xl:py-4 rounded-xl bg-white text-blue-700 hover:bg-blue-50 transition-all duration-200 text-[15px] mb-8 shadow-lg"
               >
                 Assinar Premium
