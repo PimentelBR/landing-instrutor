@@ -1,0 +1,57 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: landing-instrutor-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: instrutor
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-senha123}
+      POSTGRES_DB: landing_instrutor
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U instrutor -d landing_instrutor"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    image: landing-instrutor-api:latest
+    container_name: landing-instrutor-api
+    restart: unless-stopped
+    ports:
+      - "4000:4000"
+    environment:
+      - NODE_ENV=production
+      - PORT=4000
+      - DATABASE_URL=postgresql://instrutor:${POSTGRES_PASSWORD:-senha123}@postgres:5432/landing_instrutor
+      - JWT_SECRET=${JWT_SECRET:-troque-por-chave-segura-longa}
+      - FRONTEND_URL=http://147.15.92.73
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  landing-instrutor:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - API_INTERNAL_URL=http://api:4000
+    image: landing-instrutor:latest
+    container_name: landing-instrutor
+    restart: unless-stopped
+    ports:
+      - "80:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - HOSTNAME=0.0.0.0
+      - NEXT_PUBLIC_API_URL=http://147.15.92.73:4000
+    depends_on:
+      - api
+
+volumes:
+  postgres_data:
