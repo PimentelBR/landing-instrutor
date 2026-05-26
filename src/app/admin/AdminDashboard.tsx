@@ -134,10 +134,10 @@ function LoginScreen({ onLogin }: { onLogin: (token: string) => void }) {
       const res = await fetch("/api/admin/auth", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ token: value }),
+        body: JSON.stringify({ token: value.trim() }),
       });
       if (!res.ok) { setErro("Token inválido."); return; }
-      sessionStorage.setItem("admin_token", value);
+      sessionStorage.setItem("admin_token", value.trim());
       onLogin(value);
     } catch {
       setErro("Erro de conexão.");

@@ -7,8 +7,8 @@ const router = Router();
 /* ── Admin auth middleware ─────────────────────────── */
 function adminAuth(req: Request, res: Response, next: NextFunction): void {
   const header = req.headers.authorization;
-  const token = header?.startsWith("Bearer ") ? header.slice(7) : null;
-  if (!token || token !== process.env.ADMIN_TOKEN) {
+  const token = header?.startsWith("Bearer ") ? header.slice(7).trim() : null;
+  if (!token || token !== (process.env.ADMIN_TOKEN ?? "").trim()) {
     res.status(401).json({ error: "Não autorizado" });
     return;
   }
@@ -18,7 +18,7 @@ function adminAuth(req: Request, res: Response, next: NextFunction): void {
 /* ── POST /api/admin/auth ──────────────────────────── */
 router.post("/auth", (req: Request, res: Response): void => {
   const { token } = req.body as { token?: string };
-  if (!token || token !== process.env.ADMIN_TOKEN) {
+  if (!token || token.trim() !== (process.env.ADMIN_TOKEN ?? "").trim()) {
     res.status(401).json({ error: "Token inválido" });
     return;
   }
