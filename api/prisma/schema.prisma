@@ -80,3 +80,17 @@ model Avaliacao {
 
   @@index([instrutorId])
 }
+
+model Lead {
+  id              String   @id @default(cuid())
+  nome            String
+  telefone        String
+  email           String?
+  bairro          String
+  categorias      String[]
+  disponibilidade String[]
+  orcamento       Int
+  mensagem        String?
+  status          String   @default("novo")
+  criadoEm       DateTime @default(now())
+}

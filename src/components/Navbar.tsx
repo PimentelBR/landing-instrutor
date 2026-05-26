@@ -63,6 +63,9 @@ export default function Navbar() {
             <a href="/buscar" className="text-[13.5px] font-semibold text-slate-600 hover:text-blue-600 px-3 py-2 transition-colors">
               Encontrar Instrutor
             </a>
+            <a href="/aluno" className="text-[13.5px] font-semibold text-slate-600 hover:text-blue-600 px-3 py-2 transition-colors">
+              Sou Aluno
+            </a>
             <a
               href="/cadastro"
               className="bg-blue-600 hover:bg-blue-700 text-white text-[13.5px] font-semibold px-5 py-2.5 rounded-xl transition-all duration-200 glow shadow-sm"
@@ -105,11 +108,18 @@ export default function Navbar() {
               ))}
               <div className="border-t border-slate-100 my-2" />
               <a
+                href="/aluno"
+                onClick={() => setOpen(false)}
+                className="text-sm font-semibold text-slate-700 hover:text-blue-600 hover:bg-blue-50 px-3 py-2.5 rounded-lg transition-all"
+              >
+                Quero encontrar instrutor
+              </a>
+              <a
                 href="/cadastro"
                 onClick={() => setOpen(false)}
                 className="bg-blue-600 text-white text-sm font-semibold px-5 py-3.5 rounded-xl text-center glow"
               >
-                Começar Gratuitamente
+                Sou Instrutor
               </a>
             </div>
           </motion.div>
