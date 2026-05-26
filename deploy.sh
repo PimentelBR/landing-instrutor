@@ -25,9 +25,17 @@ ssh -i "$KEY" "$SERVER" bash <<'REMOTE'
   if [ ! -f .env ]; then
     PGPASS=$(openssl rand -base64 24 | tr -dc 'a-zA-Z0-9' | head -c 20)
     JWT=$(openssl rand -hex 32)
+    ADMIN=$(openssl rand -hex 24)
     echo "POSTGRES_PASSWORD=${PGPASS}" > .env
     echo "JWT_SECRET=${JWT}" >> .env
+    echo "ADMIN_TOKEN=${ADMIN}" >> .env
     echo "[INFO] .env criado com segredos gerados automaticamente."
+  fi
+  # Garante ADMIN_TOKEN para instâncias antigas
+  if ! grep -q ADMIN_TOKEN .env; then
+    ADMIN=$(openssl rand -hex 24)
+    echo "ADMIN_TOKEN=${ADMIN}" >> .env
+    echo "[INFO] ADMIN_TOKEN gerado e adicionado ao .env."
   fi
 
   # Abre porta 4000 se ainda não estiver aberta

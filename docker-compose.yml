@@ -30,6 +30,7 @@ services:
       - DATABASE_URL=postgresql://instrutor:${POSTGRES_PASSWORD:-senha123}@postgres:5432/landing_instrutor
       - JWT_SECRET=${JWT_SECRET:-troque-por-chave-segura-longa}
       - FRONTEND_URL=http://147.15.92.73
+      - ADMIN_TOKEN=${ADMIN_TOKEN:-}
     depends_on:
       postgres:
         condition: service_healthy
