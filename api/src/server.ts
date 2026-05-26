@@ -7,6 +7,7 @@ import instrutoresRoutes from "./routes/instrutores";
 import agendamentosRoutes from "./routes/agendamentos";
 import avaliacoesRoutes from "./routes/avaliacoes";
 import leadsRoutes from "./routes/leads";
+import adminRoutes from "./routes/admin";
 
 const app = express();
 
@@ -27,6 +28,7 @@ app.use("/api/instrutores", instrutoresRoutes);
 app.use("/api/agendamentos", agendamentosRoutes);
 app.use("/api/avaliacoes", avaliacoesRoutes);
 app.use("/api/leads", leadsRoutes);
+app.use("/api/admin", adminRoutes);
 
 app.use((_req, res) => {
   res.status(404).json({ error: "Rota não encontrada" });
